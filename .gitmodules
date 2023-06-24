@@ -1,6 +1,3 @@
 [submodule "lib/zpp_bits"]
 	path = lib/zpp_bits
 	url = https://github.com/eyalz800/zpp_bits.git
-[submodule "test/lib/Catch2"]
-	path = test/lib/Catch2
-	url = https://github.com/catchorg/Catch2.git
