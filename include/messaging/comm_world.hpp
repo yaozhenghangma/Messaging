@@ -2,7 +2,7 @@
  * @Author: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
  * @Date: 2023-06-23 18:18:07
  * @LastEditors: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
- * @LastEditTime: 2023-06-24 13:32:10
+ * @LastEditTime: 2023-06-25 18:15:24
  * @FilePath: /Messaging/include/messaging/comm_world.hpp
  * @Description: Header file for communicator.
  *
@@ -23,6 +23,8 @@ namespace messaging {
         ~CommWorld();
 
         int Rank();
+        int Size();
+
     private:
         messaging::Environment env_;
         bool initialized_;
