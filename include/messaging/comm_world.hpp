@@ -2,7 +2,7 @@
  * @Author: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
  * @Date: 2023-06-23 18:18:07
  * @LastEditors: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
- * @LastEditTime: 2023-06-25 18:15:24
+ * @LastEditTime: 2023-06-25 19:49:31
  * @FilePath: /Messaging/include/messaging/comm_world.hpp
  * @Description: Header file for communicator.
  *
@@ -14,6 +14,7 @@
 
 #include <messaging/config.hpp>
 #include <messaging/environment.hpp>
+#include <messaging/serialization.hpp>
 
 namespace messaging {
     class CommWorld {
@@ -25,6 +26,11 @@ namespace messaging {
         int Rank();
         int Size();
 
+        template<typename T>
+        int Send(T &data, int destination, int tag);
+
+        template<typename T>
+        int Recv(T &data, int source, int tag);
     private:
         messaging::Environment env_;
         bool initialized_;
