@@ -33,6 +33,10 @@
 
 # Build files
 build
+cmake-build-debug
 
 # VSCode settings
-.vscode/settings.json
+.vscode
+
+# Jetbrains settings
+.idea

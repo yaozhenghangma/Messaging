@@ -1,9 +1,7 @@
 /*
  * @Author: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
- * @Date: 2023-06-23 18:18:25
- * @LastEditors: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
- * @LastEditTime: 2023-06-24 15:39:57
- * @FilePath: /Messaging/src/comm_world.cpp
+ * @Date: 2023-06-23
+ * @FilePath: src/comm_world.cpp
  * @Description:
  *
  * Copyright (c) 2023 by Yaozhenghang.Ma email:Yaozhenghang.Ma@gmail.com, All Rights Reserved.

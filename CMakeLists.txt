@@ -15,7 +15,7 @@ add_library(Messaging ALIAS messaging)
 
 include_directories(messaging PUBLIC include)
 
-target_include_directories(messaging PRIVATE lib/zpp_bits)
+target_include_directories(messaging PUBLIC lib/zpp_bits)
 
 target_link_libraries(messaging PUBLIC MPI::MPI_CXX)
 

@@ -1,9 +1,7 @@
 /*
  * @Author: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
- * @Date: 2023-06-21 20:49:15
- * @LastEditors: Yaozhenghang.Ma Yaozhenghang.Ma@gmail.com
- * @LastEditTime: 2023-06-24 13:13:23
- * @FilePath: /Messaging/include/messaging/config.hpp
+ * @Date: 2023-06-21
+ * @FilePath: include/messaging/config.hpp
  * @Description:
  *  This file contains the MPI configuration details that expose
  *  the capabilities of the underlying MPI implementation.
