@@ -12,12 +12,6 @@
 
 #include <vector>
 
-#ifdef __cplusplus
-#if __cplusplus >= 202002L
-#endif
-//TODO: c++ standard under 20
-#endif //__cplusplus
-
 #include <zpp_bits.h>
 
 namespace messaging {
