@@ -1,4 +1,7 @@
 # Messaging
+[![Open MPI](https://github.com/yaozhenghangma/Messaging/actions/workflows/Open-MPI.yml/badge.svg)](https://github.com/yaozhenghangma/Messaging/actions/workflows/Open-MPI.yml)
+[![MPICH](https://github.com/yaozhenghangma/Messaging/actions/workflows/MPICH.yml/badge.svg)](https://github.com/yaozhenghangma/Messaging/actions/workflows/MPICH.yml)
+[![Intel MPI](https://github.com/yaozhenghangma/Messaging/actions/workflows/Intel-MPI.yml/badge.svg)](https://github.com/yaozhenghangma/Messaging/actions/workflows/Intel-MPI.yml)
 
 Messaging is a modern C++20 MPI wrapper, inspired by Boost.MPI and mpi4py.
 

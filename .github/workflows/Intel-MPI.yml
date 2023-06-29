@@ -3,13 +3,12 @@ on:
   push:
     branches:
       - 'main'
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        mpi: [ 'mpich', 'openmpi', 'intelmpi']
-    name: ${{ matrix.mpi }} example
+    name: Intel MPI
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -18,7 +17,7 @@ jobs:
       - name: Setup MPI
         uses: mpi4py/setup-mpi@v1
         with:
-          mpi: ${{ matrix.mpi }}
+          mpi: intelmpi
       - name: Build test
         run: |
           mkdir build
