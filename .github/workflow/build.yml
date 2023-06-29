@@ -1,0 +1,31 @@
+name: build
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mpi: [ 'mpich', 'openmpi', 'intelmpi']
+    name: ${{ matrix.mpi }} example
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Setup MPI
+        uses: mpi4py/setup-mpi@v1
+        with:
+          mpi: ${{ matrix.mpi }}
+      - name: Build test
+        run: |
+          mkdir build
+          cd build
+          cmake -DBUILD_TEST=ON ..
+          make
+      - name: Test
+        run: |
+          mpirun -np 2 ./bin/test
+          mpirun -np 2 ./bin/test_collective

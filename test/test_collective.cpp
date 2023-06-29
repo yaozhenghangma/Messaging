@@ -7,7 +7,6 @@
  * Copyright (c) 2023 by Yaozhenghang.Ma email:Yaozhenghang.Ma@gmail.com, All Rights Reserved.
  */
 
-#include <stdio.h>
 #include <messaging.hpp>
 
 class Coordinate {

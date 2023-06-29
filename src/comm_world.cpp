@@ -34,7 +34,7 @@ namespace messaging {
     int CommWorld::Rank() {
         if(initialized_) {
             int rank;
-            MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+            MPI_Comm_rank(comm_, &rank);
             return rank;
         } else {
             std::cout << "Uninitialized MPI environment. Note: the initialization function with command-line arguments should be used for MPI under version 2." << std::endl;
@@ -45,7 +45,7 @@ namespace messaging {
     int CommWorld::Size() {
         if(initialized_) {
             int size;
-            MPI_Comm_size(MPI_COMM_WORLD, &size);
+            MPI_Comm_size(comm_, &size);
             return size;
         } else {
             std::cout << "Uninitialized MPI environment. Note: the initialization function with command-line arguments should be used for MPI under version 2." << std::endl;

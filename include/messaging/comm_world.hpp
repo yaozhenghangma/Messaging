@@ -39,6 +39,7 @@ namespace messaging {
         template<typename T>
         int Scatter(std::vector<T> &all_data, T &data, int root);
     private:
+        MPI_Comm comm_ = MPI_COMM_WORLD;
         messaging::Environment env_;
         bool initialized_;
     };
@@ -76,8 +77,8 @@ namespace messaging {
     int CommWorld::Send(T &data, int destination, int tag) {
         auto serialized_data = serialization::serialize<T>(data);
         int length = serialized_data.size();
-        MPI_Send(&length, 1, MPI_INT, destination, tag, MPI_COMM_WORLD);
-        MPI_Send(&serialized_data[0], length, MPI_BYTE, destination, tag, MPI_COMM_WORLD);
+        MPI_Send(&length, 1, MPI_INT, destination, tag, comm_);
+        MPI_Send(&serialized_data[0], length, MPI_BYTE, destination, tag, comm_);
         return 0;
     }
 
@@ -86,9 +87,9 @@ namespace messaging {
         int length;
         MPI_Status status;
         std::vector<std::byte> serialized_data;
-        MPI_Recv(&length, 1, MPI_INT, source, tag, MPI_COMM_WORLD, &status);
+        MPI_Recv(&length, 1, MPI_INT, source, tag, comm_, &status);
         serialized_data.resize(length);
-        MPI_Recv(&serialized_data[0], length, MPI_BYTE, source, tag, MPI_COMM_WORLD, &status);
+        MPI_Recv(&serialized_data[0], length, MPI_BYTE, source, tag, comm_, &status);
         serialization::deserialize(data, serialized_data);
         return 0;
     }
@@ -98,9 +99,9 @@ namespace messaging {
         int length=0;
         auto serialized_data = serialization::serialize<T>(data);
         length = serialized_data.size();
-        MPI_Bcast(&length, 1, MPI_INT, root, MPI_COMM_WORLD);
+        MPI_Bcast(&length, 1, MPI_INT, root, comm_);
         serialized_data.resize(length);
-        MPI_Bcast(&serialized_data[0], length, MPI_BYTE, root, MPI_COMM_WORLD);
+        MPI_Bcast(&serialized_data[0], length, MPI_BYTE, root, comm_);
         serialization::deserialize(data, serialized_data);
         return 0;
     }
@@ -111,7 +112,7 @@ namespace messaging {
         int length = serialized_data.size();
         std::vector<std::byte> all_serialized_data;
         all_serialized_data.resize(this->Size() * length);
-        MPI_Gather(&serialized_data[0], length, MPI_BYTE, &all_serialized_data[0], length, MPI_BYTE, root, MPI_COMM_WORLD);
+        MPI_Gather(&serialized_data[0], length, MPI_BYTE, &all_serialized_data[0], length, MPI_BYTE, root, comm_);
         if(this->Rank() == root) {
             auto split_serialized_data = split_vector<std::byte>(all_serialized_data, length, this->Size());
             all_data.resize(this->Size());
@@ -138,7 +139,7 @@ namespace messaging {
         }
         this->Broadcast(length, root);
         serialized_data.resize(length);
-        MPI_Scatter(&merge_all_serialized_data[0], length, MPI_BYTE, &serialized_data[0], length, MPI_BYTE, root, MPI_COMM_WORLD);
+        MPI_Scatter(&merge_all_serialized_data[0], length, MPI_BYTE, &serialized_data[0], length, MPI_BYTE, root, comm_);
         serialization::deserialize(data, serialized_data);
         return 0;
     }
