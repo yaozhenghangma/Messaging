@@ -1,0 +1,30 @@
+name: build
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: MPICH
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Setup MPI
+        uses: mpi4py/setup-mpi@v1
+        with:
+          mpi: mpich
+      - name: Build test
+        run: |
+          mkdir build
+          cd build
+          cmake -DBUILD_TEST=ON ..
+          make
+      - name: Test
+        run: |
+          mpirun -np 2 ./build/bin/test
+          mpirun -np 2 ./build/bin/test_collective
