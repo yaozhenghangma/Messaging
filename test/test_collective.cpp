@@ -7,6 +7,7 @@
  * Copyright (c) 2023 by Yaozhenghang.Ma email:Yaozhenghang.Ma@gmail.com, All Rights Reserved.
  */
 
+#include <cassert>
 #include <messaging.hpp>
 
 class Coordinate {

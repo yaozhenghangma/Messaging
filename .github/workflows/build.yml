@@ -27,5 +27,5 @@ jobs:
           make
       - name: Test
         run: |
-          mpirun -np 2 ./bin/test
-          mpirun -np 2 ./bin/test_collective
+          mpirun -np 2 ./build/bin/test
+          mpirun -np 2 ./build/bin/test_collective
